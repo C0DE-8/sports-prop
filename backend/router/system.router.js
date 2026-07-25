@@ -36,7 +36,8 @@ router.get("/debug", (req, res) => {
       hasFullApiKey: hasFullApiKey(apiKey)
     },
     tables: {
-      props: process.env.PROPS_TABLE || "sports_props"
+      props: "sports_props",
+      users: "users"
     }
   });
 });

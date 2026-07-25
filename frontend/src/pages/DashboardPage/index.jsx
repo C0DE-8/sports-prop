@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import { FaCircleCheck, FaTriangleExclamation, FaTrophy } from 'react-icons/fa6'
-import { getProps } from '../api/propsApi'
-import { getDebugInfo, getHealth } from '../api/statusApi'
+import { getProps } from '../../api/propsApi'
+import { getDebugInfo, getHealth } from '../../api/statusApi'
+import Toast from '../../components/toast/Toast'
 
 function DashboardPage() {
   const [props, setProps] = useState([])
@@ -59,7 +60,7 @@ function DashboardPage() {
         <StatusPill ok={health?.ok} />
       </header>
 
-      {error ? <div className="alert">{error}</div> : null}
+      <Toast message={error} title="Dashboard data error" onClose={() => setError('')} />
 
       <div className="metric-grid">
         <Metric label="Loaded props" value={loading ? '...' : props.length} />

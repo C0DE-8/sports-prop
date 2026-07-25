@@ -40,7 +40,6 @@
 
 .metric,
 .panel,
-.alert,
 .filter-bar,
 .prop-card {
   border: 1px solid #e5e7eb;
@@ -161,13 +160,6 @@ dt {
 .filter-bar button {
   align-self: end;
   padding: 0 16px;
-}
-
-.alert {
-  padding: 12px 14px;
-  color: #991b1b;
-  background: #fef2f2;
-  text-align: left;
 }
 
 .table-wrap {

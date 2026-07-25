@@ -4,7 +4,7 @@ const { signToken } = require("../auth/token");
 const db = require("../db");
 
 const router = express.Router();
-const usersTable = process.env.USERS_TABLE || "users";
+const usersTable = "users";
 
 router.post("/register", async (req, res) => {
   try {

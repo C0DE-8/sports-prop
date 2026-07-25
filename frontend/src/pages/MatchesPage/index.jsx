@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { FaCalendarDays, FaRotateRight } from 'react-icons/fa6'
-import { getMatches } from '../api/matchesApi'
+import { getMatches } from '../../api/matchesApi'
+import Toast from '../../components/toast/Toast'
 
 function MatchesPage() {
   const today = useMemo(() => new Date().toISOString().slice(0, 10), [])
@@ -51,7 +52,7 @@ function MatchesPage() {
         </button>
       </div>
 
-      {error ? <div className="alert">{error}</div> : null}
+      <Toast message={error} title="Matches request failed" onClose={() => setError('')} />
 
       <section className="panel">
         {loading ? <p className="muted">Loading real match listings...</p> : <MatchCards matches={matches} />}

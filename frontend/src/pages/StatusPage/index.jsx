@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { FaCircleInfo, FaDatabase, FaShieldHalved } from 'react-icons/fa6'
-import { getDebugInfo, getHealth } from '../api/statusApi'
+import { getDebugInfo, getHealth } from '../../api/statusApi'
+import Toast from '../../components/toast/Toast'
 
 function StatusPage() {
   const [debug, setDebug] = useState(null)
@@ -39,7 +40,7 @@ function StatusPage() {
         </div>
       </header>
 
-      {error ? <div className="alert">{error}</div> : null}
+      <Toast message={error} title="Status request failed" onClose={() => setError('')} />
 
       <div className="status-grid">
         <StatusBlock icon={FaDatabase} label="DBMS URL" value={debug?.dbms?.dbmsUrl || 'Not loaded'} />

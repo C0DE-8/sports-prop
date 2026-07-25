@@ -2,7 +2,7 @@ const express = require("express");
 const db = require("../db");
 
 const router = express.Router();
-const propsTable = process.env.PROPS_TABLE || "sports_props";
+const propsTable = "sports_props";
 
 router.get("/props", async (req, res) => {
   try {

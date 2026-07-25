@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaEnvelope, FaLock, FaUser } from 'react-icons/fa6'
-import { loginUser, registerUser } from '../api/authApi'
+import { loginUser, registerUser } from '../../api/authApi'
+import Toast from '../../components/toast/Toast'
 
 function AuthPage({ mode }) {
   const isRegister = mode === 'register'
@@ -83,7 +84,7 @@ function AuthPage({ mode }) {
             </div>
           </label>
 
-          {error ? <div className="alert">{error}</div> : null}
+          <Toast message={error} title="Authentication error" onClose={() => setError('')} />
 
           <button type="submit" disabled={loading}>
             {loading ? 'Please wait...' : isRegister ? 'Create account' : 'Login'}

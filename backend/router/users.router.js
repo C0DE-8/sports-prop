@@ -3,7 +3,7 @@ const { requireAuth } = require("../middleware/auth");
 const db = require("../db");
 
 const router = express.Router();
-const usersTable = process.env.USERS_TABLE || "users";
+const usersTable = "users";
 
 router.get("/me", requireAuth, async (req, res) => {
   try {

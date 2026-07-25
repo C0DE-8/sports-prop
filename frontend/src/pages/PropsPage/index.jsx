@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { FaMagnifyingGlass, FaRotateRight } from 'react-icons/fa6'
-import { getProps } from '../api/propsApi'
+import { getProps } from '../../api/propsApi'
+import Toast from '../../components/toast/Toast'
 
 function PropsPage() {
   const [filters, setFilters] = useState({ league: '', market: '', player: '' })
@@ -70,7 +71,7 @@ function PropsPage() {
         </button>
       </form>
 
-      {error ? <div className="alert">{error}</div> : null}
+      <Toast message={error} title="Props request failed" onClose={() => setError('')} />
 
       <section className="panel">
         {loading ? <p className="muted">Loading props...</p> : <PropCards props={props} />}
