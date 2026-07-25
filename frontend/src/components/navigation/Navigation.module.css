@@ -1,0 +1,155 @@
+.mobileTopbar {
+  display: none;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 100svh;
+  padding: 24px;
+  color: #f9fafb;
+  background: #111827;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brandMark {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 8px;
+  color: #052e16;
+  background: #86efac;
+}
+
+.brand strong,
+.brand span {
+  display: block;
+}
+
+.brand strong {
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.brand span {
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.navLinks {
+  display: grid;
+  gap: 8px;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 12px;
+  border-radius: 8px;
+  color: #d1d5db;
+  text-decoration: none;
+}
+
+.navLink:hover,
+.active {
+  color: #ffffff;
+  background: #1f2937;
+}
+
+.gatewayChip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding: 12px;
+  border: 1px solid #374151;
+  border-radius: 8px;
+  color: #d1d5db;
+  font-size: 14px;
+}
+
+.backdrop {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .mobileTopbar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 68px;
+    padding: 10px 16px;
+    color: #ffffff;
+    background: #111827;
+    border-bottom: 1px solid #1f2937;
+  }
+
+  .menuButton {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border: 1px solid #374151;
+    border-radius: 8px;
+    color: #ffffff;
+    background: #1f2937;
+    cursor: pointer;
+    font: inherit;
+  }
+
+  .sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 50;
+    width: min(82vw, 320px);
+    padding: 20px;
+    transform: translateX(-100%);
+    transition: transform 180ms ease;
+    box-shadow: 18px 0 36px rgba(17, 24, 39, 0.28);
+  }
+
+  .sidebarOpen {
+    transform: translateX(0);
+  }
+
+  .desktopBrand {
+    display: none;
+  }
+
+  .backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 45;
+    display: block;
+    border: 0;
+    background: rgba(17, 24, 39, 0.54);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms ease;
+  }
+
+  .backdropOpen {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .navLinks {
+    margin-top: 8px;
+  }
+
+  .gatewayChip {
+    margin-top: auto;
+  }
+}
