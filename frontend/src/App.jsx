@@ -3,6 +3,7 @@ import AuthPage from './pages/AuthPage.jsx'
 import DashboardPage from './pages/DashboardPage.jsx'
 import LandingPage from './pages/LandingPage.jsx'
 import MatchesPage from './pages/MatchesPage.jsx'
+import NotFoundPage from './pages/NotFoundPage.jsx'
 import PropsPage from './pages/PropsPage.jsx'
 import StatusPage from './pages/StatusPage.jsx'
 import Navigation from './components/navigation/Navigation.jsx'
@@ -22,7 +23,7 @@ function App() {
           <Route path="/status" element={<StatusPage />} />
           <Route path="/login" element={<AuthPage mode="login" />} />
           <Route path="/register" element={<AuthPage mode="register" />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
     </div>

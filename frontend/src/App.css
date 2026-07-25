@@ -415,6 +415,34 @@ pre {
   font-weight: 800;
 }
 
+.not-found {
+  display: grid;
+  min-height: calc(100svh - 64px);
+  place-items: center;
+}
+
+.not-found-card {
+  display: grid;
+  justify-items: start;
+  gap: 14px;
+  width: min(100%, 500px);
+  padding: 28px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+  text-align: left;
+}
+
+.not-found-card > span {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 8px;
+  color: #991b1b;
+  background: #fee2e2;
+}
+
 @media (max-width: 860px) {
   .app-shell {
     grid-template-columns: 1fr;
