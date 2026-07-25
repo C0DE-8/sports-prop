@@ -20,7 +20,7 @@ router.get("/health", async (req, res) => {
   }
 });
 
-router.get("/api/debug", (req, res) => {
+router.get("/debug", (req, res) => {
   const apiKey = process.env.API_KEY || "";
 
   res.json({

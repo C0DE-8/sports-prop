@@ -6,6 +6,6 @@ export async function getHealth() {
 }
 
 export async function getDebugInfo() {
-  const response = await api.get('/api/debug')
+  const response = await api.get('/debug')
   return response.data
 }

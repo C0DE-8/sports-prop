@@ -1,14 +1,20 @@
 import { NavLink, Navigate, Route, Routes } from 'react-router-dom'
-import { FaChartLine, FaDatabase, FaHouse, FaListUl, FaSignal } from 'react-icons/fa6'
+import { FaChartLine, FaDatabase, FaHouse, FaListUl, FaRightToBracket, FaSignal, FaTrophy } from 'react-icons/fa6'
+import AuthPage from './pages/AuthPage.jsx'
 import DashboardPage from './pages/DashboardPage.jsx'
+import LandingPage from './pages/LandingPage.jsx'
+import MatchesPage from './pages/MatchesPage.jsx'
 import PropsPage from './pages/PropsPage.jsx'
 import StatusPage from './pages/StatusPage.jsx'
 import './App.css'
 
 const navItems = [
-  { to: '/', label: 'Dashboard', icon: FaHouse },
+  { to: '/', label: 'Home', icon: FaHouse },
+  { to: '/dashboard', label: 'Dashboard', icon: FaChartLine },
   { to: '/props', label: 'Props', icon: FaListUl },
+  { to: '/matches', label: 'Matches', icon: FaTrophy },
   { to: '/status', label: 'Status', icon: FaSignal },
+  { to: '/login', label: 'Login', icon: FaRightToBracket },
 ]
 
 function App() {
@@ -46,9 +52,13 @@ function App() {
 
       <main className="page">
         <Routes>
-          <Route path="/" element={<DashboardPage />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/props" element={<PropsPage />} />
+          <Route path="/matches" element={<MatchesPage />} />
           <Route path="/status" element={<StatusPage />} />
+          <Route path="/login" element={<AuthPage mode="login" />} />
+          <Route path="/register" element={<AuthPage mode="register" />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
