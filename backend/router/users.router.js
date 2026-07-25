@@ -2,9 +2,11 @@ const express = require("express");
 const { requireAuth } = require("../middleware/auth");
 const db = require("../db");
 
+// Handles authenticated user profile routes.
 const router = express.Router();
 const usersTable = "users";
 
+// Returns the current authenticated user's profile.
 router.get("/me", requireAuth, async (req, res) => {
   try {
     const rows = await db.query(
@@ -19,6 +21,7 @@ router.get("/me", requireAuth, async (req, res) => {
   }
 });
 
+// Safely quotes known table or column names before building SQL.
 function quoteIdentifier(identifier) {
   if (!/^[A-Za-z0-9_]+$/.test(identifier)) {
     throw new Error(`Unsafe SQL identifier: ${identifier}`);

@@ -2,6 +2,7 @@ const crypto = require("crypto");
 
 const defaultTtlSeconds = 60 * 60 * 24 * 7;
 
+// Signs a compact HMAC token for authenticated API requests.
 function signToken(payload, options = {}) {
   const secret = getSecret();
   const ttlSeconds = Number(options.ttlSeconds || defaultTtlSeconds);
@@ -15,6 +16,7 @@ function signToken(payload, options = {}) {
   return `${encoded}.${signature}`;
 }
 
+// Validates an auth token signature and expiration time.
 function verifyToken(token) {
   const secret = getSecret();
   const [encoded, signature] = String(token || "").split(".");
@@ -33,6 +35,7 @@ function verifyToken(token) {
   return payload;
 }
 
+// Reads and validates the JWT_SECRET used to sign app tokens.
 function getSecret() {
   const secret = process.env.JWT_SECRET;
   if (!secret || secret.length < 24) {
@@ -42,10 +45,12 @@ function getSecret() {
   return secret;
 }
 
+// Creates the HMAC signature for a token body.
 function sign(value, secret) {
   return crypto.createHmac("sha256", secret).update(value).digest("base64url");
 }
 
+// Encodes a value for URL-safe token transport.
 function base64Url(value) {
   return Buffer.from(value).toString("base64url");
 }

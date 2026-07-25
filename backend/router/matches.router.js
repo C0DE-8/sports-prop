@@ -1,7 +1,9 @@
 const express = require("express");
 
+// Handles real sports match listing routes through a server-side provider key.
 const router = express.Router();
 
+// Proxies Sportmonks fixture listings so provider tokens stay off the frontend.
 router.get("/matches", async (req, res) => {
   try {
     const provider = process.env.SPORTS_DATA_PROVIDER || "sportmonks";
@@ -45,6 +47,7 @@ router.get("/matches", async (req, res) => {
   }
 });
 
+// Defaults and validates fixture dates in YYYY-MM-DD format.
 function normalizeDate(value) {
   const candidate = String(value || new Date().toISOString().slice(0, 10));
   if (!/^\d{4}-\d{2}-\d{2}$/.test(candidate)) {
@@ -54,6 +57,7 @@ function normalizeDate(value) {
   return candidate;
 }
 
+// Restricts provider include strings to the simple Sportmonks include syntax.
 function cleanInclude(value) {
   const include = String(value || "").trim();
   if (!include) return "";
@@ -64,6 +68,7 @@ function cleanInclude(value) {
   return include;
 }
 
+// Removes a trailing slash so provider paths join cleanly.
 function normalizeUrl(url) {
   return String(url || "").replace(/\/$/, "");
 }

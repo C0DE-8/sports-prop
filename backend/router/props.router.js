@@ -1,9 +1,11 @@
 const express = require("express");
 const db = require("../db");
 
+// Handles sports prop board and lookup routes.
 const router = express.Router();
 const propsTable = "sports_props";
 
+// Lists props with optional sport, league, player, market, and game filters.
 router.get("/props", async (req, res) => {
   try {
     const { sport, league, player, market, gameId, limit } = req.query;
@@ -29,6 +31,7 @@ router.get("/props", async (req, res) => {
   }
 });
 
+// Returns one prop by database id.
 router.get("/props/:id", async (req, res) => {
   try {
     const rows = await db.query(`SELECT * FROM ${quoteIdentifier(propsTable)} WHERE id = ?`, [req.params.id]);
@@ -40,6 +43,7 @@ router.get("/props/:id", async (req, res) => {
   }
 });
 
+// Lists unique leagues found in the props table.
 router.get("/leagues", async (req, res) => {
   try {
     const rows = await db.query(
@@ -52,6 +56,7 @@ router.get("/leagues", async (req, res) => {
   }
 });
 
+// Adds an equality filter only when the query value is present.
 function addFilter(filters, params, column, value) {
   if (value === undefined || value === "") return;
 
@@ -59,6 +64,7 @@ function addFilter(filters, params, column, value) {
   params.push(value);
 }
 
+// Keeps API list limits inside a predictable range.
 function clampLimit(value) {
   const parsed = Number(value || 50);
   if (!Number.isFinite(parsed)) return 50;
@@ -66,6 +72,7 @@ function clampLimit(value) {
   return Math.min(Math.max(Math.trunc(parsed), 1), 200);
 }
 
+// Safely quotes known table or column names before building SQL.
 function quoteIdentifier(identifier) {
   if (!/^[A-Za-z0-9_]+$/.test(identifier)) {
     throw new Error(`Unsafe SQL identifier: ${identifier}`);

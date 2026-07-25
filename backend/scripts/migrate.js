@@ -6,6 +6,7 @@ const db = require("../db");
 
 const migrationsDir = path.join(__dirname, "..", "migrations");
 
+// Applies each pending SQL migration through the DBMS Gateway connector.
 async function main() {
   await ensureMigrationsTable();
 
@@ -36,6 +37,7 @@ async function main() {
   console.log("migrations complete");
 }
 
+// Creates the migration tracking table when it does not exist yet.
 async function ensureMigrationsTable() {
   await db.execute(`
     CREATE TABLE IF NOT EXISTS schema_migrations (
@@ -48,11 +50,13 @@ async function ensureMigrationsTable() {
   `);
 }
 
+// Checks whether a migration filename has already been recorded.
 async function isApplied(filename) {
   const rows = await db.query("SELECT id FROM schema_migrations WHERE filename = ? LIMIT 1", [filename]);
   return rows.length > 0;
 }
 
+// Splits simple SQL migration files into executable statements.
 function splitSql(sql) {
   const withoutComments = sql
     .split("\n")

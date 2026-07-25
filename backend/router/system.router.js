@@ -1,8 +1,10 @@
 const express = require("express");
 const db = require("../db");
 
+// Handles backend health and debug routes.
 const router = express.Router();
 
+// Checks that the DBMS Gateway is reachable with the configured project key.
 router.get("/health", async (req, res) => {
   if (!hasFullApiKey(process.env.API_KEY)) {
     return res.status(400).json({
@@ -20,6 +22,7 @@ router.get("/health", async (req, res) => {
   }
 });
 
+// Returns non-secret runtime configuration for frontend diagnostics.
 router.get("/debug", (req, res) => {
   const apiKey = process.env.API_KEY || "";
 
@@ -42,6 +45,7 @@ router.get("/debug", (req, res) => {
   });
 });
 
+// Confirms the app has the full DBMS API key, not just the dashboard prefix.
 function hasFullApiKey(value) {
   return typeof value === "string" && value.startsWith("dbms_") && value.length > 30;
 }

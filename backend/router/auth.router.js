@@ -3,9 +3,11 @@ const { hashPassword, verifyPassword } = require("../auth/password");
 const { signToken } = require("../auth/token");
 const db = require("../db");
 
+// Handles login and registration routes for user accounts.
 const router = express.Router();
 const usersTable = "users";
 
+// Creates a user, stores a password hash, and returns an auth token.
 router.post("/register", async (req, res) => {
   try {
     const name = cleanString(req.body.name);
@@ -39,6 +41,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
+// Verifies user credentials and returns a fresh auth token.
 router.post("/login", async (req, res) => {
   try {
     const email = cleanEmail(req.body.email);
@@ -64,15 +67,18 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// Normalizes free-form string input before validation or persistence.
 function cleanString(value) {
   return String(value || "").trim();
 }
 
+// Normalizes and validates email input for auth routes.
 function cleanEmail(value) {
   const email = cleanString(value).toLowerCase();
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : "";
 }
 
+// Safely quotes known table or column names before building SQL.
 function quoteIdentifier(identifier) {
   if (!/^[A-Za-z0-9_]+$/.test(identifier)) {
     throw new Error(`Unsafe SQL identifier: ${identifier}`);

@@ -1,18 +1,46 @@
-# React + Vite
+# Sports Prop Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite frontend for the Sports Prop platform.
 
-Currently, two official plugins are available:
+## Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+Production build:
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+```bash
+npm run build
+```
 
-Note: This will impact Vite dev & build performances.
+## Environment
 
-## Expanding the ESLint configuration
+```env
+VITE_API_BASE_URL=https://sports-prop.vercel.app/api
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Vite exposes `VITE_` variables to the browser, so only public frontend values belong here. API provider secrets such as Sportmonks tokens stay in the backend env.
+
+## Routes
+
+- `/` landing page
+- `/dashboard` prop operations dashboard
+- `/props` prop board
+- `/matches` real match listing page
+- `/status` backend and DBMS status page
+- `/login` login page
+- `/register` registration page
+- `*` 404 page
+
+## Structure
+
+- `src/api/`: axios client and API-specific request files
+- `src/components/navigation/`: responsive sidebar and hamburger menu
+- `src/components/toast/`: reusable toast/alert component
+- `src/pages/*/index.jsx`: page-level route components
+
+## Deployment
+
+`vercel.json` rewrites all routes to `index.html` so React Router works on refresh and direct route visits.
