@@ -5,7 +5,8 @@
   padding: 12px 14px;
   border: 1px solid;
   border-radius: 8px;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
   text-align: left;
 }
 
@@ -21,12 +22,12 @@
 }
 
 .copy strong {
-  color: #111827;
+  color: #f8fafc;
   font-size: 14px;
 }
 
 .copy span {
-  color: #374151;
+  color: #e2e8f0;
 }
 
 .close {
@@ -44,19 +45,19 @@
 }
 
 .error {
-  border-color: #fecaca;
-  background: #fef2f2;
-  color: #991b1b;
+  border-color: rgba(252, 165, 165, 0.5);
+  background: rgba(127, 29, 29, 0.32);
+  color: #fecaca;
 }
 
 .success {
-  border-color: #bbf7d0;
-  background: #f0fdf4;
-  color: #166534;
+  border-color: rgba(94, 234, 212, 0.5);
+  background: rgba(20, 184, 166, 0.2);
+  color: #ccfbf1;
 }
 
 .info {
-  border-color: #bfdbfe;
-  background: #eff6ff;
-  color: #1d4ed8;
+  border-color: rgba(125, 211, 252, 0.5);
+  background: rgba(14, 116, 144, 0.26);
+  color: #bae6fd;
 }

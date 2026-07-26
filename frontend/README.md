@@ -28,7 +28,7 @@ Vite exposes `VITE_` variables to the browser, so only public frontend values be
 - `/` landing page
 - `/dashboard` prop operations dashboard
 - `/props` prop board
-- `/matches` real match listing page
+- `/matches` real Sportmonks round odds and fixture listing page
 - `/status` backend and DBMS status page
 - `/login` login page
 - `/register` registration page

@@ -36,6 +36,7 @@ JWT_SECRET=replace-with-long-random-secret
 SPORTS_DATA_PROVIDER=sportmonks
 SPORTMONKS_API_TOKEN=replace-with-sportmonks-token
 SPORTMONKS_BASE_URL=https://api.sportmonks.com/v3/football
+SPORTMONKS_ROUND_ID=372154
 ```
 
 `PROPS_TABLE` and `USERS_TABLE` are not needed. The migrated table names are fixed as `sports_props` and `users`.
@@ -49,6 +50,8 @@ Implemented API routes:
 - `POST /api/auth/login`
 - `GET /api/users/me`
 - `GET /api/matches?date=YYYY-MM-DD`
+- `GET /api/matches?mode=round&roundId=372154`
+- `GET /api/matches/round/372154`
 - `GET /api/props`
 - `GET /api/props/:id`
 - `GET /api/leagues`
@@ -109,10 +112,19 @@ Frontend routes:
 
 ## Real Match Listings
 
-The backend uses Sportmonks as the first real sports data provider. Add `SPORTMONKS_API_TOKEN` in `backend/.env`, then call:
+The backend uses Sportmonks as the first real sports data provider. The preferred feed is a round query with fixture odds, markets, bookmakers, participants, and league country.
+
+Add `SPORTMONKS_API_TOKEN` in `backend/.env`, then call:
 
 ```txt
-GET /api/matches?date=2026-07-25
+GET /api/matches?mode=round&roundId=372154
+GET /api/matches/round/372154
+```
+
+The backend sends this Sportmonks query shape:
+
+```txt
+/v3/football/rounds/372154?include=fixtures.odds.market;fixtures.odds.bookmaker;fixtures.participants;league.country&filters=markets:1;bookmakers:2
 ```
 
 The token stays on the backend. The frontend only calls the backend `/matches` endpoint.

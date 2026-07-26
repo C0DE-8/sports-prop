@@ -46,6 +46,8 @@ Auth and users:
 Sports data:
 
 - `GET /api/matches?date=YYYY-MM-DD`
+- `GET /api/matches?mode=round&roundId=372154`
+- `GET /api/matches/round/372154`
 - `GET /api/props`
 - `GET /api/props/:id`
 - `GET /api/leagues`
@@ -73,6 +75,13 @@ The backend currently supports Sportmonks fixtures:
 SPORTS_DATA_PROVIDER=sportmonks
 SPORTMONKS_API_TOKEN=replace-with-sportmonks-token
 SPORTMONKS_BASE_URL=https://api.sportmonks.com/v3/football
+SPORTMONKS_ROUND_ID=372154
 ```
 
 `SPORTMONKS_API_TOKEN` must stay backend-only.
+
+Default round request shape:
+
+```txt
+/v3/football/rounds/372154?include=fixtures.odds.market;fixtures.odds.bookmaker;fixtures.participants;league.country&filters=markets:1;bookmakers:2
+```
